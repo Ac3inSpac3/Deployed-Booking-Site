@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<div class="custom-container p-5 mt-4">
+  <!-- Destination Title -->
+  <div class="row">
+      <div class="col-lg-12 text-center">
+          <h2 class="mb-4">{{ destination.name }}</h2>
+      </div>
+  </div>
+
+  <div class="row">
+    <!-- Left Section (Destination Details) -->
+    <div class="col-lg-8">
+      <!-- Image -->
+      <img src="{{ destination.image }}" alt="{{ destination.image }}" 
+          class="event-image d-block w-100 rounded-corners mb-2">
+      <!-- destinationm Details -->
+      <div>
+          <h4>Destination Details</h4>
+          <p><strong>Booking price:</strong> ${{ destination.currency }}</p>
+          <p><strong><i class="description"></i>Description:</strong> </p>
+          <p>{{ destination.description }}</p>  
+      </div>
+    </div> 
+
+    <!-- Comments Section -->
+    <div class="col-lg-4">
+      <h2>Comments</h1>  
+      {{ render_form(form,"/destinations/{0}/comment".format(destination.id)) }}
+      <!-- Scrollable Comments List -->
+      <div style="max-height: calc(80vh - 180px); overflow-y: auto;">
+        <div class="mb-3">
+          <h4>Comments:</h4>
+          {% for comment in destination.comments %}
+          <div class="mb-3" style="background-color: #f8f8f8; padding: 10px; border-radius: 5px;">
+              <p>
+                  <strong>{{ comment.user.name }}:</strong>
+                  <small>January 2024</small>
+              </p>
+              <p style="margin-top: 10px;">{{ comment.text }}</p>
+              <!-- Add some margin above comment body for better spacing -->
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

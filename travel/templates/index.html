@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}   
+   <div class="custom-container">
+      
+      <!-- Carousel -->
+      <div id="featured" class="carousel slide custom-container p-5" data-bs-ride="carousel">
+
+         <!-- Indicators/dots -->
+         <div class="carousel-indicators">
+            <button type="button" data-bs-target="#featured" data-bs-slide-to="0" class="active "></button>
+            <button type="button" data-bs-target="#featured" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#featured" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#featured" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#featured" data-bs-slide-to="4"></button>
+         </div>
+
+         <!-- The slideshow/carousel -->
+         <div class="carousel-inner darkblue-border rounded-corners">
+            {% for destination in destinations[:3] %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+               <a href="{{ url_for('destination.show', id=destination.id) }}">
+                     <img src="{{ destination.image }}" alt="{{ destination.image }}" class="d-block w-100">
+                     <div class="carousel-caption">
+                        <h3>{{ destination.name }}</h3>
+                        <p>{{ destination.description }}</p>
+                     </div>
+               </a>
+            </div>
+            {% endfor %}
+         </div>
+
+         <!-- Left and right controls/icons -->
+         <button class="carousel-control-prev" type="button" data-bs-target="#featured" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#featured" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+         </button>
+      </div>
+
+      <div class="custom-container p-5">
+         <div class="row p-2">
+             {% for destination in destinations %}
+             <div class="col-lg-4 col-md-6 image-container rounded-corners">
+                 <a href="{{ url_for('destination.show', id=destination.id) }}">
+                     <img src="{{ destination.image }}" alt="{{ destination.image }}"
+                          class="d-block w-100 darkblue-border rounded-corners">
+                     <div class="carousel-caption">
+                         <h3>{{ destination.name }}</h3>
+                         <p>{{ destination.description }}</p>
+                     </div>
+                 </a>
+             </div>
+             {% endfor %}
+         </div>
+     </div>
+     
+     
+   </div>
+{% endblock %}
