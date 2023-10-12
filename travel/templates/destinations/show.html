@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<div class="custom-container p-5 mt-4">
+<div class="custom-container p-5">
   <!-- Destination Title -->
   <div class="row">
       <div class="col-lg-12 text-center">
-          <h2 class="mb-4">{{ destination.name }}</h2>
+          <h1 class="mb-4">{{ destination.name }}</h1>
       </div>
   </div>
 
@@ -20,8 +20,9 @@
           class="event-image d-block w-100 rounded-corners mb-2">
       <!-- destinationm Details -->
       <div>
-          <h4>Destination Details</h4>
+          <h4>Destination Details:</h4>
           <p><strong>Booking price:</strong> ${{ destination.currency }}</p>
+          <button class="btn btn-primary mb-2">Book</button>
           <p><strong><i class="description"></i>Description:</strong> </p>
           <p>{{ destination.description }}</p>  
       </div>
